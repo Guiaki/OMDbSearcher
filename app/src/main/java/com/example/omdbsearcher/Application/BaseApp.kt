@@ -5,11 +5,12 @@ import android.app.Application
 import com.example.omdbsearcher.Dagger.Component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class BaseApp : Application(), HasActivityInjector {
+class BaseApp : Application(), HasAndroidInjector {
     @Inject
-    lateinit var activityInjector : DispatchingAndroidInjector<Activity>
+    lateinit var activityInjector : DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
@@ -17,5 +18,5 @@ class BaseApp : Application(), HasActivityInjector {
 
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+    override fun androidInjector(): DispatchingAndroidInjector<Any> = activityInjector
 }
