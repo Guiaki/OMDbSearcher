@@ -1,8 +1,8 @@
-package com.example.omdbsearcher.Dagger.Component
+package com.example.omdbsearcher.dagger.component
 
-import com.example.omdbsearcher.Application.BaseApp
-import com.example.omdbsearcher.Dagger.Builder.ActivityBuilder
-import com.example.omdbsearcher.Dagger.Module.AppModule
+import com.example.omdbsearcher.application.BaseApp
+import com.example.omdbsearcher.dagger.builder.ActivityBuilder
+import com.example.omdbsearcher.dagger.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
