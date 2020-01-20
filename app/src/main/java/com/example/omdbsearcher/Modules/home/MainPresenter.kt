@@ -1,8 +1,10 @@
 package com.example.omdbsearcher.Modules.home
 
 import android.util.Log
+import com.example.omdbsearcher.application.BaseApp
 import com.example.omdbsearcher.data.database.entity.MovieEntity
 import com.example.omdbsearcher.data.repository.MovieRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -32,5 +34,12 @@ class MainPresenter
                     Log.d("OMDebug", movie.toString())
                 }
             }
+
+        BaseApp.API.getMovies("interstellar")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({ movie ->
+                    Log.d("OMDebug", movie.toString())
+                })
     }
 }

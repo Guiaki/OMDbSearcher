@@ -24,7 +24,7 @@ class MovieRepository(private val mMovies: MovieDao) {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe {
-                Log.d("MovieRepository", "Updated movie ${movie.id} successfully...")
+                Log.d("MovieRepository", "Updated movie ${movie.imdbid} successfully...")
             }
     }
 }
