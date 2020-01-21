@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("")
+    @GET("/")
     fun getMovie(@Query("i") id: String, @Query("apikey") apikey: String, @Query("plot") plot: String): Observable<MovieEntity>
 
     @GET("/")

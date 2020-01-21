@@ -1,6 +1,7 @@
 package com.example.omdbsearcher.data.network
 
 import com.example.omdbsearcher.BuildConfig
+import com.example.omdbsearcher.data.database.entity.MovieEntity
 import com.example.omdbsearcher.data.model.SearchMovie
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
@@ -32,8 +33,12 @@ class ApiWrapper {
         service = retrofit.create<ApiService>(ApiService::class.java)
     }
 
-    fun getMovies(search: String): Observable<SearchMovie> {
+    fun getMovieList(search: String): Observable<SearchMovie> {
         return service.getMoviesList(search, BuildConfig.API_KEY)
             .flatMapIterable { movieList -> movieList.search }
+    }
+
+    fun getMovie(imdbID: String): Observable<MovieEntity> {
+        return service.getMovie(imdbID, BuildConfig.API_KEY, "full")
     }
 }
