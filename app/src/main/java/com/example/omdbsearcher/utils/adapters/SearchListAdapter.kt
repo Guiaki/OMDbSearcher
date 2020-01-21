@@ -30,6 +30,7 @@ class SearchListAdapter(private val context: Context, private val movieList: Lis
         Glide.with(context)
             .load(movieList.get(position).poster)
             .dontAnimate()
+            .override(148,148)
             .placeholder(R.mipmap.ic_not_found)
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)

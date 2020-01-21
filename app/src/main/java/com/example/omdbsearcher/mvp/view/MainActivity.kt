@@ -74,17 +74,19 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     fun showEmptyView(){
-        imv_poster_top.visibility = View.GONE
-        lst_movie_list.visibility = View.GONE
-        txv_big_text.visibility = View.VISIBLE
+        ctl_main.post(Runnable {
+            imv_poster_top.visibility = View.GONE
+            lst_movie_list.visibility = View.GONE
+            txv_big_text.visibility = View.VISIBLE
+        })
     }
 
     override fun showMovieList(movieList: List<MovieEntity>){
-        imv_poster_top.visibility = View.VISIBLE
-        lst_movie_list.visibility = View.VISIBLE
-        txv_big_text.visibility = View.GONE
-
         lst_movie_list.post(Runnable {
+            imv_poster_top.visibility = View.VISIBLE
+            lst_movie_list.visibility = View.VISIBLE
+            txv_big_text.visibility = View.GONE
+
             lst_movie_list.setHasFixedSize(true)
             lst_movie_list.layoutManager = LinearLayoutManager(this)
             listAdapter = MainListAdapter(this, movieList, this, lastSelectedItem)

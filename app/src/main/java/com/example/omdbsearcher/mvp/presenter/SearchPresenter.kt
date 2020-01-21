@@ -17,7 +17,11 @@ class SearchPresenter
     lateinit var mMovieRepository: MovieRepository
 
     override fun init() {
-        BaseApp.API.getMovieList("shadow")
+
+    }
+
+    override fun search(searchTerm: String){
+        BaseApp.API.getMovieList(searchTerm)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .toList()

@@ -3,6 +3,7 @@ package com.example.omdbsearcher.mvp.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,9 @@ import com.example.omdbsearcher.mvp.presenter.SearchPresenter
 import com.example.omdbsearcher.utils.adapters.SearchListAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_search.*
+import java.util.*
 import javax.inject.Inject
+import kotlin.concurrent.timerTask
 
 
 class SearchActivity : AppCompatActivity(), SearchContract.View {
@@ -21,13 +24,15 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     @Inject
     lateinit var searchPresenter: SearchPresenter
 
+    lateinit var timer: Timer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
         searchPresenter.init()
-
+        timer = Timer()
         startViews()
     }
 
@@ -51,7 +56,28 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     }
 
     fun startViews(){
-        src_search.hasFocus()
+        src_search.setFocusable(true);
+        src_search.setIconified(false);
+        src_search.requestFocusFromTouch();
+
+        src_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(timerTask{
+                    searchPresenter.search(newText)
+                },3000)
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                timer.cancel()
+                searchPresenter.search(query)
+                return false
+            }
+
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

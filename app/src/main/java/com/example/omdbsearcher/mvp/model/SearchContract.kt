@@ -12,5 +12,6 @@ interface SearchContract {
 
     interface Presenter {
         fun init()
+        fun search(searchTerm: String)
     }
 }
