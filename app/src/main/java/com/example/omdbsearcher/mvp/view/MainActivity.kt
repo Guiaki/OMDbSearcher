@@ -1,29 +1,33 @@
 package com.example.omdbsearcher.Modules.home
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.omdbsearcher.R
-import com.example.omdbsearcher.data.database.entity.MovieEntity
-import com.example.omdbsearcher.data.repository.MovieRepository
+import com.example.omdbsearcher.mvp.view.SearchActivity
 import dagger.android.AndroidInjection
-import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var app : Context
 
     @Inject
     lateinit var mainPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
-
-        mainPresenter.init()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mainPresenter.init()
+
+        startViews()
+    }
+
+    fun startViews(){
+        ctl_header.setOnClickListener{
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

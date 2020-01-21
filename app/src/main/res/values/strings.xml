@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OMDbSearcher</string>
+    <string name="header_bar_title">Meus Filmes</string>
+    <string name="placehold">John Doe</string>
 </resources>
