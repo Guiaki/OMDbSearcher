@@ -1,6 +1,7 @@
 
 # OMDb Searcher
 ![enter image description here](https://i.imgur.com/eUschP4.jpg) ![enter image description here](https://i.imgur.com/pETnPAf.jpg) ![enter image description here](https://i.imgur.com/8jmdUYj.jpg)
+
 Using [OMDb API](http://www.omdbapi.com/) this app enables you to search through movies available in OMDb and save the ones you most like. 
 This project uses RXJava, Retrofit, Dagger2, Room and is written in Kotlin.
 
