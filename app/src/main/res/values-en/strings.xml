@@ -2,4 +2,8 @@
 <resources>
     <string name="header_bar_title">My Movies</string>
     <string name="placehold">John Doe</string>
+    <string name="save_movie">Save Movie</string>
+    <string name="delete_movie">Delete Movie</string>
+    <string name="back">Back</string>
+    <string name="no_movies">You dont have any movies saved, click on search</string>
 </resources>

@@ -19,12 +19,8 @@ class MovieRepository(private val mMovies: MovieDao) {
         return Completable.fromCallable { mMovies.insertMovie(movie) }
     }
 
-    fun updateMovieInDB(movie: MovieEntity) {
-        Observable.fromCallable { mMovies.updateMovie(movie) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe {
-                Log.d("MovieRepository", "Updated movie ${movie.imdbid} successfully...")
-            }
+    fun deleteMovieInDb(movie: MovieEntity) : Completable {
+        return Completable.fromCallable { mMovies.deleteMovie(movie) }
     }
+
 }

@@ -1,8 +1,9 @@
 package com.example.omdbsearcher.mvp.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.omdbsearcher.R
@@ -13,6 +14,7 @@ import com.example.omdbsearcher.utils.adapters.SearchListAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
+
 
 class SearchActivity : AppCompatActivity(), SearchContract.View {
 
@@ -30,7 +32,9 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     }
 
     override fun onClickItem(imdbID: String){
-
+        val intent = Intent(this, DetailsActivity::class.java)
+            .putExtra("imdbID", imdbID)
+        startActivityForResult(intent, 1)
     }
 
     override fun showMovieList(movieList: List<SearchMovie>) {
@@ -48,5 +52,10 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
 
     fun startViews(){
         src_search.hasFocus()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        finish()
     }
 }

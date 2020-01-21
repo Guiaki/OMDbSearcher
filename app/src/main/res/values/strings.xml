@@ -2,4 +2,8 @@
     <string name="app_name">OMDbSearcher</string>
     <string name="header_bar_title">Meus Filmes</string>
     <string name="placehold">John Doe</string>
+    <string name="save_movie">Salvar Filme</string>
+    <string name="delete_movie">Deletar Filme</string>
+    <string name="back">Voltar</string>
+    <string name="no_movies">Você não tem nenhum filme cadastrado, clique em pesquisar</string>
 </resources>

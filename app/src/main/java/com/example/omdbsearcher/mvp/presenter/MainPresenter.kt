@@ -15,13 +15,7 @@ class MainPresenter
     lateinit var mMovieRepository: MovieRepository
 
     override fun init() {
-    }
-
-    fun saveMovieToDB(newMovie: MovieEntity){
-        mMovieRepository.storeMovieInDb(newMovie)
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe()
+        getAllMovieFromDB()
     }
 
     fun getAllMovieFromDB(){
@@ -29,9 +23,11 @@ class MainPresenter
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe{movieList ->
-                Log.d("OMDebug", movieList.size.toString())
-                for (movie in movieList){
-                    Log.d("OMDebug", movie.toString())
+                if(movieList.size >= 1){
+                    view.setTopImage(movieList.first())
+                    view.showMovieList(movieList)
+                }else{
+                    view.showEmptyView()
                 }
             }
     }

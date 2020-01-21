@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mvp.view.DetailsActivity"></activity>
+        <activity android:name=".mvp.view.DetailsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".mvp.view.SearchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
