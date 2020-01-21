@@ -23,13 +23,4 @@ Simply do as the following instructions:
 -   Change the  `Target JVM version`  to  `1.8`
 -   Click  `Apply`
 
-## Use Flow
-```mermaid
-graph LR
-A[MainActivity] -- Room DB --> B[DetailsActivity]
-A -- Retrofit --> C(SearchActivity)
-B --> A
-C --> B
-```
-
 Made by Guilherme Garcia da Rosa
